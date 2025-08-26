@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TasteBite – Food Delivery</title>
+  <style>
+    /* Base  */
+    * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
+    body { line-height:1.6; background:#f9f9f9; color:#333; }
+
+    /* Header */
+    .header{
+      background:#c00946; color:#fff; padding:1rem 1.25rem;
+      display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:100;
+    }
+    .logo{ font-size:1.6rem; font-weight:700; }
+    .navbar ul{ list-style:none; display:flex; gap:14px; }
+    .navbar a{ color:#fff; text-decoration:none; font-weight:600; }
+    .navbar a:hover{ color:#ffdd59; }
+    .menu-btn{ display:none; font-size:1.8rem; background:none; border:none; color:#fff; cursor:pointer; }
+
+    /* Hero  */
+    .hero{
+      background:url("https://t3.ftcdn.net/jpg/03/60/57/68/360_F_360576850_05Q0KW3mPD8b0fN545hteX0nA3sDEHt4.jpg")
+        no-repeat center/cover;
+      color:#fff; text-align:center; padding:90px 20px;
+    }
+    .hero h1{ font-size:2.2rem; margin-bottom:10px; }
+    .hero p{ margin-bottom:16px; opacity:.95; }
+    .cta{ display:inline-block; padding:10px 18px; border-radius:8px; text-decoration:none; color:#333;
+      background:#ffdd59; font-weight:700;
+    }
+    .cta:hover{ background:#f1c40f; }
+
+    /* Sections */
+    .section{ padding:48px 20px; text-align:center; }
+
+    /* Menu Grid  */
+    .menu-grid{
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+      gap:20px; margin-top:20px;
+    }
+    .menu-item{
+      background:#fff; border-radius:12px; overflow:hidden;
+      box-shadow:0 2px 6px rgba(0,0,0,.08); transition:transform .25s;
+    }
+    .menu-item:hover{ transform:translateY(-4px); }
+    .menu-item img{ width:100%; height:200px; object-fit:cover; display:block; }
+    .menu-item h3{ margin:10px 0 4px; }
+    .menu-item p{ margin-bottom:14px; padding:0 10px; color:#555; }
+
+    /* Order Form  */
+    .order-form{
+      max-width:520px; margin:0 auto; text-align:left; background:#fff;
+      padding:20px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,.1);
+    }
+    .form-group{ margin-bottom:14px; }
+    .form-group label{ display:block; margin-bottom:6px; font-weight:700; color:#333; }
+    .form-group input, .form-group select{
+      width:100%; padding:10px; border:1px solid #ccc; border-radius:8px; font-size:14px; outline:none;
+    }
+    .btn{
+      width:100%; padding:12px; border:none; border-radius:8px; cursor:pointer; font-weight:700;
+      color:#fff; background:linear-gradient(45deg, #ff4d4d, #ff944d); transition:.25s;
+    }
+    .btn:hover{ background:linear-gradient(45deg, #ff3333, #ff8000); }
+
+    /*  Footer  */
+    footer{ margin-top:24px; background:#c00946; color:#fff; text-align:center; padding:12px; }
+
+    /* Popup */
+    .popup{
+      display:none; position:fixed; inset:0; background:rgba(0,0,0,.6);
+      justify-content:center; align-items:center; z-index:1000;
+    }
+    .popup-content{
+      background:#fff; width:min(90%, 360px); padding:22px; border-radius:14px; text-align:center;
+      box-shadow:0 10px 25px rgba(0,0,0,.25); animation:fadeIn .25s ease;
+    }
+    .popup-content h3{ color:#27ae60; margin-bottom:6px; }
+    .popup-content p{ color:#444; margin-bottom:14px; }
+    .popup .close-x{
+      position:absolute; top:14px; right:16px; font-size:20px; background:none; border:none; cursor:pointer; color:#fff;
+    }
+    @keyframes fadeIn{ from{ opacity:0; transform:scale(.92) } to{ opacity:1; transform:scale(1) } }
+
+    /* Responsive Navbar */
+    @media (max-width: 768px){
+      .navbar{ display:none; position:absolute; right:12px; top:60px; background:#c00946; padding:10px 14px; border-radius:8px; }
+      .navbar.active{ display:block; }
+      .navbar ul{ flex-direction:column; gap:10px; }
+      .menu-btn{ display:block; }
+      .hero h1{ font-size:1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">TasteBite</div>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle Menu">☰</button>
+    <nav class="navbar" id="navbar">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#order">Order</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <h1>Delicious Food, Delivered Fresh</h1>
+    <p>Order your favorite meals online and enjoy at home.</p>
+    <a href="#menu" class="cta">Explore Menu</a>
+  </section>
+
+  <!-- Menu -->
+  <section id="menu" class="section">
+    <h2>Our Special Menu</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <img src="https://assets.digitalcontent.marksandspencer.app/image/upload/w_2560,q_auto,c_fill,f_auto/9a27a789b31ee3a3a5e6b12a7f65b0e1.jpg" alt="Burger">
+        <h3>Cheese Burger</h3>
+        <p>Juicy grilled burger with cheese and fresh veggies.</p>
+      </div>
+      <div class="menu-item">
+        <img src="https://images.deliveryhero.io/image/fd-pk/LH/w9zx-listing.jpg" alt="Pizza">
+        <h3>Italian Pizza</h3>
+        <p>Hot cheesy pizza with fresh toppings.</p>
+      </div>
+      <div class="menu-item">
+        <img src="https://s.lightorangebean.com/media/20240914160809/Spicy-Penne-Pasta_-done.png" alt="Pasta">
+        <h3>Classic Pasta</h3>
+        <p>Creamy pasta made with authentic Italian recipe.</p>
+      </div>
+      <div class="menu-item">
+        <img src="https://cdn.foodstorm.com/e5184b75632349358c9031c2ef988e6b/images/0ac13014da6f4fd1adee7eb7fc2f70eb_1080w.jpg" alt="Sushi">
+        <h3>Sushi Platter</h3>
+        <p>Fresh sushi rolls with wasabi and soy sauce.</p>
+      </div>
+      <div class="menu-item">
+        <img src="https://www.penzeys.com/media/4517/beef-tacos_main.jpg" alt="Tacos">
+        <h3>Mexican Tacos</h3>
+        <p>Spicy beef tacos served with salsa and cheese.</p>
+      </div>
+      <div class="menu-item">
+        <img src="https://static.toiimg.com/thumb/54677722.cms?width=1200&height=900" alt="Ice Cream">
+        <h3>Vanilla Ice Cream</h3>
+        <p>Cold and creamy dessert with rich vanilla flavor.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Order -->
+  <section id="order" class="section">
+    <h2>Place Your Order</h2>
+    <form id="orderForm" class="order-form">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input id="name" type="text" placeholder="Enter your name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input id="email" type="email" placeholder="Enter your email" required>
+      </div>
+      <div class="form-group">
+        <label for="food">Select Food</label>
+        <select id="food" required>
+          <option value="">-- Choose a Dish --</option>
+          <option value="Burger">Cheese Burger</option>
+          <option value="Pizza">Italian Pizza</option>
+          <option value="Pasta">Classic Pasta</option>
+          <option value="Sushi">Sushi Platter</option>
+          <option value="Tacos">Mexican Tacos</option>
+          <option value="Ice Cream">Vanilla Ice Cream</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input id="quantity" type="number" min="1" value="1" required>
+      </div>
+      <button type="submit" class="btn">Place Order</button>
+    </form>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <p>Email: support@tastebite.com</p>
+    <p>Phone: +92 322 1234567</p>
+  </section>
+
+  <footer>
+    <p>© 2025 TasteBite. All rights reserved.</p>
+  </footer>
+
+  <!-- Success Popup -->
+  <button class="close-x" id="closeX" aria-label="Close Popup" style="display:none;">✕</button>
+  <div id="successPopup" class="popup" aria-hidden="true">
+    <div class="popup-content" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+      <h3 id="popupTitle">✅ Order Placed Successfully!</h3>
+      <p>Thank you for ordering with <strong>TasteBite</strong>.</p>
+      <button id="closeBtn" class="btn" style="width:auto; padding:10px 16px;">Close</button>
+    </div>
+  </div>
+
+  <script>
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const navbar  = document.getElementById('navbar');
+    menuBtn.addEventListener('click', () => navbar.classList.toggle('active'));
+
+    // Popup Helpers
+    const popup   = document.getElementById('successPopup');
+    const closeBtn = document.getElementById('closeBtn');
+
+    function openPopup(){
+      popup.style.display = 'flex';
+      popup.setAttribute('aria-hidden', 'false');
+    }
+    function closePopup(){
+      popup.style.display = 'none';
+      popup.setAttribute('aria-hidden', 'true');
+    }
+
+    // Close when clicking outside content
+    popup.addEventListener('click', (e)=>{
+      if(e.target === popup) closePopup();
+    });
+    // Close button
+    closeBtn.addEventListener('click', closePopup);
+    // ESC key
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') closePopup();
+    });
+
+    // Order Form Submit
+    const form = document.getElementById('orderForm');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const food = document.getElementById('food').value;
+      const qty  = Number(document.getElementById('quantity').value);
+
+      if(name && email && food && qty > 0){
+        openPopup();
+        form.reset();
+      } else {
+        alert('⚠ Please fill all fields correctly!');
+      }
+    });
+  </script>
+</body>
+</html>
