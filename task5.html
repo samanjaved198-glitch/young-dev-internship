@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #ef7c8e;
+      --secondary: #1d5c63;
+      --bg-dark: #0f1724;
+      --light: #f8fafc;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      line-height: 1.6;
+      background: linear-gradient(135deg, var(--bg-dark), var(--secondary));
+      color: var(--light);
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: flex-end; /* right aligned */
+      gap: 1.5rem;
+      padding: 1rem 2rem;
+      background: rgba(0,0,0,0.4);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+   /* Home Section */
+#home {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 4rem 2rem;
+}
+
+.home-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.home-text h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+}
+/* Common typing style */
+/* Base styles */
+.fade-line {
+  opacity: 0;
+  transform: translateY(20px); /* thoda neeche se aaye */
+  animation: fadeUp 1s ease forwards;
+}
+
+.fade-line:nth-child(1) {
+  color: #ff4d6d; /* example color */
+}
+ 
+
+
+
+/* Animation keyframes */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Delay for each line */
+.fade-line:nth-child(1) { animation-delay: 0s; }
+.fade-line:nth-child(2) { animation-delay: 0.5s; }
+.fade-line:nth-child(3) { animation-delay: 1s; }
+.fade-line:nth-child(4) { animation-delay: 1.5s; }
+.fade-line:nth-child(5) { animation-delay: 2s; }
+.fade-line:nth-child(6) { animation-delay: 2.5s; }
+.fade-line:nth-child(7) { animation-delay: 3s; }
+.fade-line:nth-child(8) { animation-delay: 3.5s; }
+
+
+
+/* Home Image */
+.home-image {
+  flex: 1;
+  text-align: center;
+}
+
+.home-image img {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 4px solid var(--primary);
+}
+
+/* Section Styling */
+section {
+  padding: 3rem 1rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+h2 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary);
+}
+
+    /* About */
+    #about {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #about p {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .resume-btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.3s;
+    }
+    .resume-btn:hover { transform: scale(1.05); }
+
+    .social-links {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+
+    .social-links a {
+      color: var(--light);
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.08);
+      transition: background 0.3s;
+    }
+    .social-links a:hover { background: var(--primary); }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 12px;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .project-card h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .service-card {
+      background: rgba(255,255,255,0.05);
+      padding: 1.5rem;
+      border-radius: 12px;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* Contact */
+    form {
+      display: grid;
+      gap: 1rem;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    input, textarea, button {
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    input, textarea {
+      width: 100%;
+    }
+
+    button {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(0,0,0,0.4);
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .home-text, .home-image { text-align: center; }
+      .home-text h1 { font-size: 2rem; }
+      h2 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Home -->
+  <section id="home">
+  <div class="home-text">
+    <h1 class="fade-line">SAMAN JAVED</h1>
+
+    <p class="fade-line">Frontend Developer | Designer | Learner</p>
+
+    <p class="fade-line">I am a dedicated Frontend Developer with a strong passion</p>
+    <p class="fade-line">for building modern, responsive, and user-friendly websites.</p>
+    <p class="fade-line">My focus is on creating clean designs, smooth animations,</p>
+    <p class="fade-line">and optimized code that delivers the best user experience.</p>
+    <p class="fade-line">I enjoy learning new technologies, solving problems,</p>
+    <p class="fade-line">and continuously improving my skills to grow as a developer.</p>
+  </div>
+
+    <div class="home-image">
+      <img src="https://t3.ftcdn.net/jpg/07/06/10/62/360_F_706106273_azeLKRtE7CHga5JjHNfWAbgr4IkhEuwD.jpg" alt="My Photo" />
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      Hi! I'm a passionate web developer who loves building beautiful, functional websites.
+      My skills include HTML, CSS, JavaScript, and React. I enjoy experimenting with animations,
+      typography, and design systems to make projects unique.
+    </p>
+
+    <a href="resume.pdf" class="resume-btn" download>Download Resume</a>
+
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/saman-javed-775082310?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a>
+      <a href="https://github.com/samanjaved198-glitch/young-dev-internship" target="_blank">GitHub</a>
+      <a href="https://mail.google.com/mail/u/0/#starred">Email</a>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Project 1</h3>
+        <p>A responsive portfolio site built with HTML, CSS, and JS.</p>
+      </div>
+      <div class="project-card">
+        <h3>Project 2</h3>
+        <p>An interactive to-do list app with local storage support.</p>
+      </div>
+      <div class="project-card">
+        <h3>Project 3</h3>
+        <p>A landing page with animated gradients and custom fonts.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <h2>My Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Web Development</h3>
+        <p>Building responsive, accessible, and modern websites.</p>
+      </div>
+      <div class="service-card">
+        <h3>UI/UX Design</h3>
+        <p>Designing clean interfaces with user experience in mind.</p>
+      </div>
+      <div class="service-card">
+        <h3>Custom Animations</h3>
+        <p>Adding engaging animations to enhance interactivity.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    © 2025 Saman Javed| Made with love
+  </footer>
+</body>
+</html>
